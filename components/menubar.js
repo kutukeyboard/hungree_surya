@@ -47,6 +47,7 @@ const MenuBar = (props) => {
 				</Menu.Item>
 				<Menu.Item key="Logout" style={{ float: "right" }}>
 					<Button
+						type="text"
 						onClick={() => {
 							localStorage.clear();
 							window.location.href = "/login";
