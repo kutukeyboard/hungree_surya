@@ -1,0 +1,35 @@
+html,
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.page-wrap {
+	padding: 20px 50px;
+}
+
+.login-block {
+	margin: auto;
+	width: 300px;
+	background-color: white;
+	box-shadow: 1px 1px 5px #999;
+	padding: 20px;
+}
+
+.input {
+	margin-bottom: 15px !important;
+	padding: 12px;
+	border: 0px;
+	border-bottom: 0.5px solid #999;
+	width: 90%;
+}
+
+.login-button {
+	margin-top: 40px !important;
+}
+
+h2.login-title {
+	font-size: 24px;
+	text-align: center;
+}
