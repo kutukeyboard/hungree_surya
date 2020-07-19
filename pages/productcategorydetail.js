@@ -15,7 +15,7 @@ const ProductCategoryDetail = () => {
 				.patch(
 					"https://hungree-surya.web.app/api/productcategory/" +
 						router.query.id,
-					values,
+					{ name: values.name, isDeleted: false },
 					headers(localStorage.getItem("token"))
 				)
 				.catch((err) => {
@@ -37,7 +37,6 @@ const ProductCategoryDetail = () => {
 
 	useEffect(() => {
 		if (router.query.id) {
-			console.log("ada query");
 			axios
 				.get(
 					"https://hungree-surya.web.app/api/productcategory/" +

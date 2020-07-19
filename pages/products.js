@@ -5,8 +5,8 @@ import axios from "axios";
 import headers from "../components/headers";
 import { useRouter } from "next/router";
 
-const ProductCategories = () => {
-	const [categoryData, setCategoryData] = useState();
+const Products = () => {
+	const [productData, setProductData] = useState();
 	const router = useRouter();
 
 	const columns = [
@@ -14,6 +14,16 @@ const ProductCategories = () => {
 			title: "Name",
 			dataIndex: "name",
 			key: "name",
+		},
+		{
+			title: "Price",
+			dataIndex: "price",
+			key: "price",
+		},
+		{
+			title: "Category",
+			dataIndex: "category",
+			key: "category",
 		},
 		{
 			title: "Action",
@@ -24,8 +34,8 @@ const ProductCategories = () => {
 						onClick={() => {
 							console.log(record.id);
 							router.push(
-								`/productcategorydetail/${record.id}`,
-								`productcategorydetail?id=${record.id}`
+								`/productdetail/${record.id}`,
+								`productdetail?id=${record.id}`
 							);
 						}}
 					>
@@ -36,9 +46,8 @@ const ProductCategories = () => {
 						onClick={() => {
 							axios
 								.patch(
-									"https://hungree-surya.web.app/api/productcategory/" +
-										record.id,
-									{ name: record.name, isDeleted: true },
+									"https://hungree-surya.web.app/api/product/" + record.id,
+									{ name: record.name, price: record.price, category:record.category, isDeleted: true },
 									headers(localStorage.getItem("token"))
 								)
 								.then((data) => {
@@ -59,11 +68,11 @@ const ProductCategories = () => {
 	const getData = () => {
 		axios
 			.get(
-				"https://hungree-surya.web.app/api/productcategory",
+				"https://hungree-surya.web.app/api/product",
 				headers(localStorage.getItem("token"))
 			)
 			.then((res) => {
-				setCategoryData(res.data);
+				setProductData(res.data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -76,18 +85,18 @@ const ProductCategories = () => {
 
 	return (
 		<div className="page-wrap">
-			<h2>Product Category</h2>
+			<h2>Product </h2>
 			<Button
 				type="primary"
 				onClick={() => {
-					router.push("/productcategorydetail");
+					router.push("/productdetail");
 				}}
 			>
 				Add New
 			</Button>
-			<Table columns={columns} dataSource={categoryData} />
+			<Table columns={columns} dataSource={productData} />
 		</div>
 	);
 };
 
-export default ProductCategories;
+export default Products;
